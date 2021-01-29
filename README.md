@@ -7,7 +7,7 @@
 | -------- | ------ | ----------- |
 | nickname        | string | null: false |
 | email           | string | null: false |
-| password        | string | null: false |
+| encrypted_password        | string | null: false |
 | first_name      | string | null: false |
 | last_name       | string | null: false |
 | first_name_kana | string | null: false |
@@ -47,7 +47,7 @@
 
 - belongs_to :user
 - belongs_to :item
-
+- belongs_to :address
 ## address テーブル
 
 | Column       | Type   | Options    |      
@@ -63,5 +63,5 @@
 
 - belongs_to :user
 - belongs_to :orders
-
+- has_one    :orders
 
