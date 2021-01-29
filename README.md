@@ -17,12 +17,13 @@
 ### Association
 
 - has_many :items
+- has_many :orders
 
 ## items テーブル
 
 | Column       | Type     | Options     |
 | ------------ | ------   | ----------- |
-| item_name    | string   | null: false |
+| name         | string   | null: false |
 | information  | text     | null: false |
 | category_id  | integer  | null: false |
 | state_id     | integer  | null: false |
@@ -33,8 +34,8 @@
 | user         | references|  null: false, foreign_key: true |
 ### Association
 
-- has_one   :order
-- belongs   :user
+- has_one      :order
+- belongs_to   :user
 ## orders テーブル
 | Colum   | Type  |Option      |
 | ------- | ----- | -----------|
