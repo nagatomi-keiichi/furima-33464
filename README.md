@@ -1,67 +1,24 @@
-# テーブル設計 
+# README
 
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## users テーブル
+Things you may want to cover:
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| first_name      | string | null: false |
-| last_name       | string | null: false |
-| first_name_kana | string | null: false |
-| last_name_kana  | string | null: false |
-| birthday_id        | datetime| null: false |
+* Ruby version
 
-### Association
+* System dependencies
 
-- has_many :address, 
-- has_many :items
-- has_one  :address
+* Configuration
 
-## items テーブル
+* Database creation
 
-| Column       | Type     | Options     |
-| ------------ | ------   | ----------- |
-| item_name    | string   | null: false |
-| information  | text     | null: false |
-| category_id  | integer  | null: false |
-| state_id     | integer  | null: false |
-| burden_id    | integer  | null: false |
-| area_id      | integer  | null: false |
-| days_id      | integer  | null: false |
-| price        | integer  | null: false |
-| user         | references|  null: false, foreign_key: true |
-### Association
+* Database initialization
 
-- has_one   :orders
-- belongs   :user
-## orders テーブル
-| Colum   | Type  |Option      |
-| ------- | ----- | -----------|
-| user      | references |  null: false, foreign_key: true |
-| item      | references |  null: false, foreign_key: true |
+* How to run the test suite
 
-### Association
+* Services (job queues, cache servers, search engines, etc.)
 
-- belongs_to :user
-- belongs_to :item
+* Deployment instructions
 
-## address テーブル
-
-| Column       | Type   | Options    |      
-| -------------|--------|------------|
-| postcode     | string | null false |
-| prefectures_id  | integer | null false |
-| city         | string | null false |
-| block        | string | null false |
-| building     | string | null false |
-| phone_number | integer | null false |
-
-### Association
-
-- belongs_to :user
-- belongs_to :orders
-
-
+* ...
