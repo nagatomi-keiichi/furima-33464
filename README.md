@@ -12,13 +12,12 @@
 | last_name       | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana  | string | null: false |
-| birthday_id        | datetime| null: false |
+| birthday_id     | date null: false |
 
 ### Association
 
 - has_many :address, 
 - has_many :items
-- has_one  :address
 
 ## items テーブル
 
@@ -35,7 +34,7 @@
 | user         | references|  null: false, foreign_key: true |
 ### Association
 
-- has_one   :orders
+- has_one   :order
 - belongs   :user
 ## orders テーブル
 | Colum   | Type  |Option      |
@@ -56,12 +55,13 @@
 | prefectures_id  | integer | null false |
 | city         | string | null false |
 | block        | string | null false |
-| building     | string | null false |
+| building     | string |             |
 | phone_number | integer | null false |
+| order        | references |  null: false, foreign_key: true |
+
 
 ### Association
 
 - belongs_to :user
-- belongs_to :orders
-- has_one    :orders
+- belongs_to :order
 
