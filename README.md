@@ -12,11 +12,10 @@
 | last_name       | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana  | string | null: false |
-| birthday_id     | date null: false |
+| birthday_id     | date   |null: false |
 
 ### Association
 
-- has_many :address, 
 - has_many :items
 
 ## items テーブル
@@ -29,7 +28,7 @@
 | state_id     | integer  | null: false |
 | burden_id    | integer  | null: false |
 | area_id      | integer  | null: false |
-| days_id      | integer  | null: false |
+| day_id       | integer  | null: false |
 | price        | integer  | null: false |
 | user         | references|  null: false, foreign_key: true |
 ### Association
@@ -46,22 +45,20 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one    :address
 ## address テーブル
 
 | Column       | Type   | Options    |      
 | -------------|--------|------------|
 | postcode     | string | null false |
-| prefectures_id  | integer | null false |
+| prefecture_id  | integer | null false |
 | city         | string | null false |
 | block        | string | null false |
 | building     | string |             |
-| phone_number | integer | null false |
+| phone_number | string | null false |
 | order        | references |  null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :user
 - belongs_to :order
-
