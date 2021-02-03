@@ -17,11 +17,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-
+      it 'emailが空では登録できないこと' do
+        @user.email = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank", "Email can't be blank")
+      end
       it 'emailが＠を含めない場合は登録できないこと' do
         @user.email = 'aaaabbbb'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       it 'passwordが空では登録できないこと' do
@@ -70,22 +74,22 @@ RSpec.describe User, type: :model do
       it 'first_nameは必須であること' do
         @user.first_name = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name can't be blank", 'First name is invalid')
       end
       it 'last_nameは必須であること' do
         @user.last_name = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+        expect(@user.errors.full_messages).to include("Last name can't be blank", 'Last name is invalid')
       end
       it 'first_name_kanaは必須であること' do
         @user.first_name_kana = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", 'First name kana is invalid')
       end
       it 'last_name_kanaは必須であること' do
         @user.last_name_kana = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", 'Last name kana is invalid')
       end
       it 'first_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
         @user.first_name = '123456'

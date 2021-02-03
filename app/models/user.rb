@@ -8,10 +8,14 @@ class User < ApplicationRecord
     validates :nickname
     validates :email, uniqueness: { case_sensitive: false }
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :birthday_id
+  end
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々]/ } do
+    validates :first_name
+    validates :last_name
+  end
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } do
+    validates :first_name_kana
+    validates :last_name_kana
   end
 end
