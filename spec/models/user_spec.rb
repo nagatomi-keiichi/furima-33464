@@ -67,6 +67,26 @@ RSpec.describe User, type: :model do
         anoteher_user.valid?
         expect(anoteher_user.errors.full_messages).to include('Email has already been taken')
       end
+      it 'first_nameは必須であること' do
+        @user.first_name = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
+      end
+      it 'last_nameは必須であること' do
+        @user.last_name = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+      end
+      it 'first_name_kanaは必須であること' do
+        @user.first_name_kana = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+      end
+      it 'last_name_kanaは必須であること' do
+        @user.last_name_kana = nil
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+      end
       it 'first_nameは漢字・平仮名・カタカナ以外では登録できないこと' do
         @user.first_name = '123456'
         @user.valid?
