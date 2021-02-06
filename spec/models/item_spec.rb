@@ -79,37 +79,37 @@ RSpec.describe Item, type: :model do
       it '商品価格が半角英数字混合では出品できない' do
         @item.price = '1a1a1a1a'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '商品価格が半角英字のみでは出品できない' do
         @item.price = 'aaaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'カテゴリーは１が選択された場合は出品できないこと' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it '商品の状態は１が選択された場合は出品できない事' do
         @item.state_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include ("State must be other than 1")
+        expect(@item.errors.full_messages).to include('State must be other than 1')
       end
       it '配送料の負担は１が選択された場合は出品できない事' do
         @item.burden_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include ("Burden must be other than 1")
+        expect(@item.errors.full_messages).to include('Burden must be other than 1')
       end
       it '発送元の地域は１が選択された場合は出品できない事' do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include ("Area must be other than 1")
+        expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
       it '発送までの日にちは１が選択された場合は出品できない事' do
         @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include ("Day must be other than 1")
+        expect(@item.errors.full_messages).to include('Day must be other than 1')
       end
     end
   end
