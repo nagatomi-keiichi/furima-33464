@@ -10,10 +10,6 @@ RSpec.describe Item, type: :model do
       it 'nameとinfomationとpriceとcategory_idとstate_idとburden_idとarea_idとday_idとuser_idとimageがあると保存できる' do
         expect(@item).to be_valid
       end
-      it '価格の範囲が300~9999999￥なら登録できる' do
-        @item.price = 500
-        expect(@item).to be_valid
-      end
     end
     context 'ユーザー新規登録ができない場合' do
       it '商品画像を1枚つける事が必須であること' do
@@ -79,6 +75,11 @@ RSpec.describe Item, type: :model do
         @item.price = '５００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it '商品の状態, 配送料の負担, 発送元の地域, 発送までの日数, カテゴリーは「１が選択された場合は出品できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
     end
   end
