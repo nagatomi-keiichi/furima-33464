@@ -5,13 +5,13 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
   end
 
-  describe '商品出品するとき' do
+  describe '商品出品ができる場合' do
     context 'ユーザー新規登録ができる場合' do
       it 'nameとinfomationとpriceとcategory_idとstate_idとburden_idとarea_idとday_idとuser_idとimageがあると保存できる' do
         expect(@item).to be_valid
       end
     end
-    context 'ユーザー新規登録ができない場合' do
+    context '商品出品ができない場合' do
       it '商品画像を1枚つける事が必須であること' do
         @item.image = nil
         @item.valid?
@@ -76,10 +76,40 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-      it '商品の状態, 配送料の負担, 発送元の地域, 発送までの日数, カテゴリーは「１が選択された場合は出品できないこと' do
+      it '商品価格が半角英数字混合では出品できない' do
+        @item.price = '1a1a1a1a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '商品価格が半角英字のみでは出品できない' do
+        @item.price = 'aaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'カテゴリーは１が選択された場合は出品できないこと' do
         @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it '商品の状態は１が選択された場合は出品できない事' do
+        @item.state_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("State must be other than 1")
+      end
+      it '配送料の負担は１が選択された場合は出品できない事' do
+        @item.burden_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Burden must be other than 1")
+      end
+      it '発送元の地域は１が選択された場合は出品できない事' do
+        @item.area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Area must be other than 1")
+      end
+      it '発送までの日にちは１が選択された場合は出品できない事' do
+        @item.day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Day must be other than 1")
       end
     end
   end
