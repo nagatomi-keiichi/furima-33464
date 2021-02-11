@@ -7,7 +7,8 @@ end
 
 describe '商品購入ができる場合' do
   context '商品が購入できる場合' do
-    it '郵便番号・都道府県・市区町村・電話番号があれば購入できる' do
+    it '郵便番号・都道府県・市区町村・電話番号・tokenがあれば購入できる' do
+      expect(@order_address).to be_valid
     end
   end
 
@@ -52,6 +53,11 @@ describe '商品購入ができる場合' do
         @order_address.phone_number = '09012345'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'tokenがないと購入できないこと' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
   end
 end
