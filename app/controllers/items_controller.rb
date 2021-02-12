@@ -27,10 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.order
+    if @item.order || current_user != @item.user
       redirect_to root_path
-    else current_user == @item.user
-      redirect_to action: :index 
   end
 end
 
