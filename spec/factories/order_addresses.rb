@@ -6,5 +6,7 @@ FactoryBot.define do
     block              { '大阪市' }
     phone_number       { 12_345_678_901 }
     token              { 'tok_abcdefghijk00000000000000000' }
+    association :item
+    association :user
   end
 end

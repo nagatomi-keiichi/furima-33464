@@ -5,9 +5,11 @@ class OrderAddress
   with_options presence: true do
     validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city  # 市町村
-    validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :phone_number, format: { with: /\A\d{,11}\z/ }
     validates :block  # 番地
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
