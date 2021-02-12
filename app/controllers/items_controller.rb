@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.order
       redirect_to root_path
     else current_user == @item.user
-    redirect_to action: :index 
+      redirect_to action: :index 
   end
 end
 
