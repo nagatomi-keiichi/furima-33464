@@ -27,8 +27,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index unless current_user == @item.user
+    if @item.order
+      redirect_to root_path
+    else current_user == @item.user
+    redirect_to action: :index 
   end
+end
 
   def update
     if @item.update(item_params)
