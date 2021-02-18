@@ -32,6 +32,7 @@
 | day_id       | integer  | null: false |
 | price        | integer  | null: false |
 | user         | references|  null: false, foreign_key: true |
+| message      | text     | null: false |
 ### Association
 
 - has_one      :order

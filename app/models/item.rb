@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :day
   belongs_to :state
   has_one_attached :image
+  has_many   :messages
 
   with_options presence: true do
     validates :name
